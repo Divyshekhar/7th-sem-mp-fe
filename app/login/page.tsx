@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { FiMail, FiLock, FiEye, FiEyeOff, FiArrowLeft } from 'react-icons/fi';
-import { FaGoogle } from 'react-icons/fa';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
