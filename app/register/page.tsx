@@ -98,7 +98,7 @@ export default function RegisterPage() {
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleChange}
-                    className="input-field pl-10 text-black bg-[#E7F0FE] placeholder-black/30"
+                    className="input-field pl-10 text-black bg-[#e7feeb] placeholder-black/30"
                     placeholder="First name"
                     required
                   />
@@ -122,7 +122,7 @@ export default function RegisterPage() {
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleChange}
-                    className="input-field pl-10 text-black bg-[#E7F0FE] placeholder-black/30"
+                    className="input-field pl-10 text-black bg-[#e7feeb] placeholder-black/30"
                     placeholder="Last name"
                     required
                   />
@@ -148,7 +148,7 @@ export default function RegisterPage() {
                   name="phoneNumber"
                   value={formData.phoneNumber}
                   onChange={handleChange}
-                  className="input-field pl-10 text-black bg-[#E7F0FE] placeholder-black/30"
+                  className="input-field pl-10 text-black bg-[#e7feeb] placeholder-black/30"
                   placeholder="Enter your phone number"
                   required
                 />
@@ -172,7 +172,7 @@ export default function RegisterPage() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="input-field pl-10 text-black bg-[#E7F0FE] placeholder-black/30"
+                  className="input-field pl-10 text-black bg-[#e7feeb] placeholder-black/30"
                   placeholder="Enter your email"
                   required
                 />
@@ -196,7 +196,7 @@ export default function RegisterPage() {
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  className="input-field pl-10 pr-10 text-black bg-[#E7F0FE] placeholder-black/30"
+                  className="input-field pl-10 pr-10 text-black bg-[#e7feeb] placeholder-black/30"
                   placeholder="Create a password"
                   required
                 />
@@ -227,7 +227,7 @@ export default function RegisterPage() {
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleChange}
-                  className="input-field pl-10 pr-10 text-black bg-[#E7F0FE] placeholder-black/30"
+                  className="input-field pl-10 pr-10 text-black bg-[#e7feeb] placeholder-black/30"
                   placeholder="Confirm your password"
                   required
                 />

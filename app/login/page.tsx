@@ -84,7 +84,7 @@ export default function LoginPage() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="input-field pl-10"
+                  className="input-field pl-10 text-black bg-[#e7feeb] placeholder-black/30 "
                   placeholder="Enter your email"
                   required
                 />
@@ -100,12 +100,12 @@ export default function LoginPage() {
                 Password
               </label>
               <div className="relative">
-                <FiLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black/70" />
+                <FiLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black/70 " />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="input-field pl-10 pr-10"
+                  className="input-field pl-10 pr-10 text-black bg-[#e7feeb] placeholder-black/30"
                   placeholder="Enter your password"
                   required
                 />
