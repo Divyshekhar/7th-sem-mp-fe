@@ -1,5 +1,5 @@
 'use client';
-
+import axios from 'axios'
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -11,6 +11,25 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const handleSignin = async(e: React.FormEvent) =>{
+    e.preventDefault()
+    setIsLoading(true);
+    try{
+      const response = await axios.post("http://localhost:8080/login", {
+        email,
+        password,
+      });
+      console.log("login successful", response.data);
+    }
+    catch(err : any){
+      console.log("error logining in", err.response)
+    }
+    finally{
+      setIsLoading(false);
+    }
+   
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,7 +70,7 @@ export default function LoginPage() {
           </motion.div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSignin} className="space-y-6">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -159,27 +178,8 @@ export default function LoginPage() {
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-white/20" />
               </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-transparent text-black/80">Or continue with</span>
-              </div>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-            >
-              <motion.button
-                type="button"
-                onClick={handleGoogleSignIn}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="btn-secondary flex items-center justify-center"
-              >
-                <FaGoogle className="mr-2 text-black" />
-                <span className='text-black'>Sign in with Google</span>
-              </motion.button>
-            </motion.div>
           </form>
 
           <motion.div
