@@ -84,7 +84,7 @@ export default function LoginPage() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="input-field pl-10 text-black bg-[#e7feeb] placeholder-black/30 "
+                  className="input-field pl-10 text-black bg-[#E7F0FE] placeholder-black/30 "
                   placeholder="Enter your email"
                   required
                 />
@@ -105,7 +105,7 @@ export default function LoginPage() {
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="input-field pl-10 pr-10 text-black bg-[#e7feeb] placeholder-black/30"
+                  className="input-field pl-10 pr-10 text-black bg-[#E7F0FE] placeholder-black/30"
                   placeholder="Enter your password"
                   required
                 />
