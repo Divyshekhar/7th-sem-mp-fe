@@ -26,8 +26,10 @@ export default async function Home() {
             <h2 className="text-center text-lg sm:text-xl lg:text-3xl px-4 lg:px-0 lg:max-w-4xl text-gray-600">Get a beautiful summary reel of the document in seconds.</h2>
             {/* <Link href={destination} className="cursor-default"> */}
                 <Button variant={'link'} className="transform hover:scale-105 transition hover:no-underline flex gap-2 text-base items-center bg-teal-500 hover:bg-blue-600 text-white mt-6 sm:text-lg lg:text-xl rounded-full px-12 sm:px-14 py-7 lg:px-16 sm:py-7 lg:py-8 lg:mt-16  duration-320 ease-in-out ">
-                    <span className="pl-2">Try Questify</span>
-                    <ArrowRight className="animate-pulse" />
+                    <Link href={"/login"} className="flex items-center">
+                        <span className="pl-2">Try Questify</span>
+                        <ArrowRight className="animate-pulse ml-3 pt-0.5"/>
+                    </Link>
                 </Button>
             {/* </Link> */}
         </section>

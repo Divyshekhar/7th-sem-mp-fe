@@ -1,10 +1,23 @@
+import React from 'react'
 
-function page() {
+function Dashboard() {
   return (
-    <div className="">
-      welocme
-    </div>
+      <>
+        <div className='max-w-full '>
+          <div>
+            <div>
+
+            </div>
+
+          </div>
+          <div className='w-full'>
+            
+          </div>
+        </div>
+      </>
+      
+      
   )
 }
 
-export default page
+export default Dashboard

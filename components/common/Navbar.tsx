@@ -1,13 +1,10 @@
 "use client";
 import NavLink from "next/link";
 import { FileText } from "lucide-react";
-import { Button } from "../ui/button";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useUser } from "@/app/[context]/UserContext";
 
 export default function Header() {
-  const [signedIn, setSignedIn] = useState(false);
-  const router = useRouter();
+  const user = useUser();
 
   return (
     <div className="bg-gradient-to-br from-emerald-300 via-green-370 to-teal-300">
@@ -19,9 +16,13 @@ export default function Header() {
         </NavLink>
       </div>
 
-      {signedIn ? (
-        <div className="flex justify-center gap-4 lg:gap-12 items-center">
-          <NavLink href="/dashboard">Your Questions</NavLink>
+      {!user ? (
+        <div className="flex justify-center gap-4 lg:gap-12 items-center border-2 p-3 shadow-xl rounded-2xl transition-transform duration-200 hover:scale-105">
+          <NavLink href="/dashboard">
+            <span className="text-[14px]">
+                Your Questions
+              </span>
+            </NavLink>
         </div>
       ) : (
         <div className="pt-1">
