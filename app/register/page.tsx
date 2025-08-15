@@ -3,13 +3,13 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { FiUser, FiMail, FiLock, FiPhone, FiEye, FiEyeOff, FiArrowLeft } from 'react-icons/fi';
+import { FiUser, FiMail, FiLock, FiEye, FiEyeOff, FiArrowLeft } from 'react-icons/fi';
+import axios from 'axios';
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    phoneNumber: '',
     email: '',
     password: '',
     confirmPassword: ''
@@ -17,7 +17,6 @@ export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
@@ -26,27 +25,47 @@ export default function RegisterPage() {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    {console.log("This is console log")}
 
-    if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match!');
-      return;
-    }
-    
+  const passwordMatch = formData.confirmPassword !== '' && formData.confirmPassword === formData.password;
+  const checkFields = formData.firstName.trim() !== '' && formData.email.trim() !== '' || formData.lastName.trim() !== '';
+
+  const handleRegister = async(e: React.FormEvent) => {
+    e.preventDefault();
+    const {confirmPassword, ...payload} = formData;
     setIsLoading(true);
+    try{
+      const response = await axios.post("http://localhost:8080/user/signup", payload)
+      console.log("registered successfully", response);
+    }
+    catch(e: any){
+      console.log("error while signing up", e);
+    }
+    finally{
+      setIsLoading(false);
+    }
+  }
+
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   {console.log("This is console log")}
+
+  //   if (formData.password !== formData.confirmPassword) {
+  //     alert('Passwords do not match!');
+  //     return;
+  //   }
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    setIsLoading(false);
+  //   setIsLoading(true);
     
-    // Here you would handle the actual registration logic
-    console.log('Registration attempt:', formData);
+  //   // Simulate API call
+  //   await new Promise(resolve => setTimeout(resolve, 2000));
+  //   setIsLoading(false);
     
-    // Redirect to OTP verification
-    window.location.href = '/verify-otp';
-  };
+  //   // Here you would handle the actual registration logic
+  //   console.log('Registration attempt:', formData);
+    
+  //   // Redirect to OTP verification
+  //   window.location.href = '/verify-otp';
+  // };
 
   const inputVariants = {
     focus: { scale: 1.02, transition: { duration: 0.2 } },
@@ -79,7 +98,7 @@ export default function RegisterPage() {
           </motion.div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleRegister} className="space-y-6">
             <div className="grid grid-cols-2 gap-4">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -89,7 +108,7 @@ export default function RegisterPage() {
                 whileFocus="focus"
               >
                 <label className="block text-black/90 text-sm font-medium mb-2">
-                  First Name
+                  First Name <span className='text-red-500'>*</span>
                 </label>
                 <div className="relative">
                   <FiUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black/70" />
@@ -137,22 +156,7 @@ export default function RegisterPage() {
               variants={inputVariants}
               whileFocus="focus"
             >
-              <label className="block text-black/90 text-sm font-medium mb-2">
-                Phone Number
-              </label>
-              <div className="relative">
-                <FiPhone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black/70" />
-                <input
-                  type="tel"
-                  color='black'
-                  name="phoneNumber"
-                  value={formData.phoneNumber}
-                  onChange={handleChange}
-                  className="input-field pl-10 text-black bg-[#E7F0FE] placeholder-black/30"
-                  placeholder="Enter your phone number"
-                  required
-                />
-              </div>
+             
             </motion.div>
 
             <motion.div
@@ -163,7 +167,7 @@ export default function RegisterPage() {
               whileFocus="focus"
             >
               <label className="block text-black/90 text-sm font-medium mb-2">
-                Email Address
+                Email Address <span className='text-red-500'>*</span>
               </label>
               <div className="relative">
                 <FiMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black/70" />
@@ -187,7 +191,7 @@ export default function RegisterPage() {
               whileFocus="focus"
             >
               <label className="block text-black/90 text-sm font-medium mb-2">
-                Password
+                Password <span className='text-red-500'>*</span>
               </label>
               <div className="relative">
                 <FiLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black/70" />
@@ -218,7 +222,7 @@ export default function RegisterPage() {
               whileFocus="focus"
             >
               <label className="block text-black/90 text-sm font-medium mb-2">
-                Confirm Password
+                Confirm Password <span className='text-red-500'>*</span>
               </label>
               <div className="relative">
                 <FiLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black/70" />
@@ -248,10 +252,10 @@ export default function RegisterPage() {
             >
               <motion.button
                 type="submit"
-                disabled={isLoading}
+                disabled={isLoading || !passwordMatch || !checkFields}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="btn-primary relative overflow-hidden"
+                className="btn-primary relative overflow-hidden disabled:opacity-50 disabled:hover:bg-gray-400 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
                   <motion.div
