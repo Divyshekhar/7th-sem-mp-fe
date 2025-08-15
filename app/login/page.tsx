@@ -4,13 +4,14 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { FiMail, FiLock, FiEye, FiEyeOff, FiArrowLeft } from 'react-icons/fi';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
+  const router = useRouter();
   const handleSignin = async(e: React.FormEvent) =>{
     e.preventDefault()
     setIsLoading(true);
@@ -28,6 +29,7 @@ export default function LoginPage() {
     }
     finally{
       setIsLoading(false);
+      router.push("/");
     }
    
   }

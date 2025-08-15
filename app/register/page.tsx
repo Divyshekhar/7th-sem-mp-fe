@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { FiUser, FiMail, FiLock, FiEye, FiEyeOff, FiArrowLeft } from 'react-icons/fi';
 import axios from 'axios';
+import { routerServerGlobal } from 'next/dist/server/lib/router-utils/router-server-context';
+import { useRouter } from 'next/navigation';
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -14,6 +16,7 @@ export default function RegisterPage() {
     password: '',
     confirmPassword: ''
   });
+  const router = useRouter()
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -42,6 +45,7 @@ export default function RegisterPage() {
     }
     finally{
       setIsLoading(false);
+      router.push("/");
     }
   }
 
