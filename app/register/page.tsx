@@ -34,7 +34,7 @@ export default function RegisterPage() {
     const {confirmPassword, ...payload} = formData;
     setIsLoading(true);
     try{
-      const response = await axios.post("http://localhost:8080/user/signup", payload)
+      const response = await axios.post("http://localhost:8080/user/signup", payload, {withCredentials: true})
       console.log("registered successfully", response);
     }
     catch(e: any){

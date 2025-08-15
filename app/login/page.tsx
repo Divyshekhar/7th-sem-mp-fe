@@ -18,6 +18,8 @@ export default function LoginPage() {
       const response = await axios.post("http://localhost:8080/login", {
         email,
         password,
+      }, {
+        withCredentials: true
       });
       console.log("login successful", response.data);
     }
