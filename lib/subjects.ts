@@ -3,14 +3,14 @@ import { Question } from './types';
 export const topicsData = [
   {
     id: 'dsa',
-    name: 'DSA',
+    name: 'Data Structures & Algorithms',
     fullName: 'Data Structures & Algorithms',
     icon: '🧠',
     color: 'bg-gradient-to-br from-emerald-500 to-teal-600',
   },
   {
     id: 'os',
-    name: 'OS',
+    name: 'Operating Systems',
     fullName: 'Operating Systems',
     icon: '💻',
     color: 'bg-gradient-to-br from-blue-500 to-cyan-600',
@@ -24,14 +24,14 @@ export const topicsData = [
   },
   {
     id: 'compiler design',
-    name: 'CD',
+    name: 'Compiler Design',
     fullName: 'Compiler Design',
     icon: '⚙️',
     color: 'bg-gradient-to-br from-orange-500 to-red-600',
   },
   {
     id: 'cn',
-    name: 'CN',
+    name: 'Computer Networks',
     fullName: 'Computer Networks',
     icon: '🌐',
     color: 'bg-gradient-to-br from-indigo-500 to-blue-600',
@@ -52,14 +52,14 @@ export const topicsData = [
   },
   {
     id: 'lr',
-    name: 'LR',
+    name: 'Logical Reasoning',
     fullName: 'Logical Reasoning',
     icon: '🧩',
     color: 'bg-gradient-to-br from-yellow-500 to-orange-600',
   },
   {
     id: 'aptitude',
-    name: 'Aptitude',
+    name: 'Aptitude & Quantitative',
     fullName: 'Aptitude & Quantitative',
     icon: '📊',
     color: 'bg-gradient-to-br from-pink-500 to-rose-600',

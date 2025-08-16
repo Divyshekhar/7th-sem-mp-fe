@@ -9,10 +9,11 @@ import { topicsData } from '@/lib/subjects';
 import Link from 'next/link';
 
 export default function CategoriesPage() {
+  
   const [selectedTopic, setSelectedTopic] = useState<any>(null);
-  const [selectedDifficulty, setSelectedDifficulty] = useState<'Easy' | 'Medium' | 'Hard'>('Easy');
+  // const [selectedDifficulty, setSelectedDifficulty] = useState<'Easy' | 'Medium' | 'Hard'>('Easy');
 
-  const difficulties = ['Easy', 'Medium', 'Hard'] as const;
+  // const difficulties = ['Easy', 'Medium', 'Hard'] as const;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50/50 to-teal-50/50 dark:from-emerald-950/20 dark:to-teal-950/20">
@@ -67,45 +68,82 @@ export default function CategoriesPage() {
 
         {/* Topic Selection Dialog */}
         <Dialog open={!!selectedTopic} onOpenChange={() => setSelectedTopic(null)}>
-          <DialogContent className="sm:max-w-md">
-            <DialogHeader>
-              <DialogTitle className="flex items-center space-x-3">
-                <div className={`w-12 h-12 rounded-xl ${selectedTopic?.color} flex items-center justify-center text-xl`}>
-                  {selectedTopic?.icon}
-                </div>
-                <div>
-                  <div className="text-xl">{selectedTopic?.name}</div>
-                  <div className="text-sm text-muted-foreground font-normal">
-                    {selectedTopic?.fullName}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.4 }}
+          >
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle className="flex items-center space-x-3">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
+                    className={`w-12 h-12 rounded-xl ${selectedTopic?.color} flex items-center justify-center text-xl`}
+                  >
+                    {selectedTopic?.icon}
+                  </motion.div>
+                  <div>
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.3 }}
+                      className="text-xl"
+                    >
+                      {selectedTopic?.name}
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.4 }}
+                      className="text-sm text-muted-foreground font-normal"
+                    >
+                      {selectedTopic?.fullName}
+                    </motion.div>
                   </div>
-                </div>
-              </DialogTitle>
-            </DialogHeader>
+                </DialogTitle>
+              </DialogHeader>
 
-            <div className="space-y-6">
-
-              {/* Quiz Info */}
-              <div className="bg-muted/50 rounded-lg p-2 space-y-1">
-                
-              </div>
-
-              {/* Action Buttons */}
-              <div className="space-y-3">
-                <Link
-                  href={`/practice?topic=${selectedTopic?.id}&difficulty=${selectedDifficulty}`}
-                  onClick={() => setSelectedTopic(null)}
+              <div className="space-y-6">
+                {/* Quiz Info */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="bg-muted/50 rounded-lg p-2 space-y-1"
                 >
-                  <Button className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700">
-                    <Play className="w-4 h-4 mr-2" />
-                    Generate new set of questions!
-                  </Button>
-                </Link>
-                <Button variant="outline" className="w-full">
-                  Pick up where you left off.
-                </Button>
+                  {/* Add info here if needed */}
+                </motion.div>
+
+                {/* Action Buttons */}
+                <div className="space-y-3">
+                  <Link href="/questions" passHref>
+                    <Button asChild className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700">
+                      <motion.span
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                        className="flex items-center justify-center"
+                      >
+                        <Play className="w-4 h-4 mr-2" />
+                        Generate new set of questions!
+                      </motion.span>
+                    </Button>
+                  </Link>
+                  <motion.div
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                  >
+                    <Button variant="outline" className="w-full">
+                      Pick up where you left off.
+                    </Button>
+                  </motion.div>
+                </div>
               </div>
-            </div>
-          </DialogContent>
+            </DialogContent>
+          </motion.div>
         </Dialog>
       </div>
     </div>
