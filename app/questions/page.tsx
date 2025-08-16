@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Eye } from 'lucide-react';
+import { Eye, RefreshCcw } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -56,6 +56,16 @@ const demoQuestions: Question[] = [
 export default function PracticeUI() {
   const [questions, setQuestions] = useState<Question[]>(demoQuestions);
 
+  // const getNewQuestions = () => {
+  //   // For now just resetting with dummy new questions
+  //   setQuestions([
+  //     { question: "What is 2 + 2?", answer: "4" },
+  //     { question: "What is the boiling point of water?", answer: "100°C" },
+  //     { question: "Who painted the Mona Lisa?", answer: "Leonardo da Vinci" },
+  //     { question: "What is the speed of light?", answer: "299,792,458 m/s" },
+  //   ]);
+  // };
+
   useEffect(() => {
     // Example for API fetching
     /*
@@ -73,56 +83,64 @@ export default function PracticeUI() {
   }, []);
 
   return (
-    <div className="w-[1000px] mx-auto bg-gradient-to-br from-emerald-50/50 to-teal-50/50 dark:from-emerald-950/20 dark:to-teal-950/20">
-      <div className="container mx-auto px-4 py-8">
-        
-        
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl font-bold">Practice Quiz</h1>
-          <Badge variant="outline">{questions.length} Questions</Badge>
-        </div>
+    <div className='bg-gradient-to-br from-emerald-50/50 to-teal-50/50 dark:from-emerald-950/20 dark:to-teal-950/20'>
+      <div className="w-[1000px] mx-auto ">
+        <div className="container mx-auto px-4 py-8">
 
-    
-        <div className="space-y-6">
-          {questions.map((q, index) => (
-            <Card key={index} className="border-0 shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-lg leading-relaxed">
-                  {index + 1}. {q.question}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="flex justify-end">
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button variant="secondary">
-                      <Eye className="h-4 w-4 mr-2" />
-                      Show Answer
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent
-                    className="max-w-3xl w-full p-0 overflow-hidden 
-                               data-[state=open]:animate-none 
-                               data-[state=closed]:animate-none"
-                  >
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.9 }}
-                      transition={{ duration: 0.25, ease: 'easeOut' }}
-                      className="p-6 max-h-[80vh] overflow-y-auto"
+          <div className="flex items-center justify-between mb-8">
+            <h1 className="text-2xl font-bold">Practice Quiz</h1>
+            <Badge variant="outline">{questions.length} Questions</Badge>
+          </div>
+
+          <div className="space-y-6">
+            {questions.map((q, index) => (
+              <Card key={index} className="border-0 shadow-lg">
+                <CardHeader>
+                  <CardTitle className="text-lg leading-relaxed">
+                    {index + 1}. {q.question}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="flex justify-end">
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="secondary">
+                        <Eye className="h-4 w-4 mr-2" />
+                        Show Answer
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent
+                      className="max-w-3xl w-full p-0 overflow-hidden 
+                                 data-[state=open]:animate-none 
+                                 data-[state=closed]:animate-none"
                     >
-                      <DialogHeader>
-                        <DialogTitle>Answer</DialogTitle>
-                      </DialogHeader>
-                      <div className="text-sm leading-relaxed whitespace-pre-line break-words prose prose-sm dark:prose-invert max-w-none">
-                        {q.answer}
-                      </div>
-                    </motion.div>
-                  </DialogContent>
-                </Dialog>
-              </CardContent>
-            </Card>
-          ))}
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.9 }}
+                        transition={{ duration: 0.25, ease: 'easeOut' }}
+                        className="p-6 max-h-[80vh] overflow-y-auto"
+                      >
+                        <DialogHeader>
+                          <DialogTitle>Answer</DialogTitle>
+                        </DialogHeader>
+                        <div className="text-sm leading-relaxed whitespace-pre-line break-words prose prose-sm dark:prose-invert max-w-none">
+                          {q.answer}
+                        </div>
+                      </motion.div>
+                    </DialogContent>
+                  </Dialog>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Get New Questions Button */}
+          <div className="flex justify-center mt-10">
+            <Button className="flex items-center gap-2">
+              <RefreshCcw className="h-4 w-4" />
+              Get New Questions
+            </Button>
+          </div>
         </div>
       </div>
     </div>
