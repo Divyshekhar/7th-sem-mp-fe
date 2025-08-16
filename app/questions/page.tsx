@@ -82,34 +82,38 @@ export default function PracticeUI() {
     */
   }, []);
 
-  return (
-    <div className='bg-gradient-to-br from-emerald-50/50 to-teal-50/50 dark:from-emerald-950/20 dark:to-teal-950/20'>
-      <div className="w-[1000px] mx-auto ">
-        <div className="container mx-auto px-4 py-8">
+return (
+    <div className="bg-gradient-to-br from-emerald-50/50 to-teal-50/50 dark:from-emerald-950/20 dark:to-teal-950/20 min-h-screen">
+      <div className="max-w-5xl mx-auto px-3 sm:px-4 md:px-6">
+        <div className="py-6 sm:py-10">
 
-          <div className="flex items-center justify-between mb-8">
-            <h1 className="text-2xl font-bold">Practice Quiz</h1>
-            <Badge variant="outline">{questions.length} Questions</Badge>
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-2">
+            <h1 className="text-xl sm:text-2xl font-bold">Practice Quiz</h1>
+            <Badge variant="outline" className="self-start sm:self-auto">
+              {questions.length} Questions
+            </Badge>
           </div>
 
-          <div className="space-y-6">
+          {/* Questions */}
+          <div className="space-y-4 sm:space-y-6">
             {questions.map((q, index) => (
-              <Card key={index} className="border-0 shadow-lg">
+              <Card key={index} className="border-0 shadow-md sm:shadow-lg">
                 <CardHeader>
-                  <CardTitle className="text-lg leading-relaxed">
+                  <CardTitle className="text-base sm:text-lg leading-relaxed">
                     {index + 1}. {q.question}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="flex justify-end">
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button variant="secondary">
-                        <Eye className="h-4 w-4 mr-2" />
+                      <Button variant="secondary" size="sm" className="sm:size-default">
+                        <Eye className="h-4 w-4 mr-1 sm:mr-2" />
                         Show Answer
                       </Button>
                     </DialogTrigger>
                     <DialogContent
-                      className="max-w-3xl w-full p-0 overflow-hidden 
+                      className="max-w-[95vw] sm:max-w-2xl md:max-w-3xl w-full p-0 overflow-hidden 
                                  data-[state=open]:animate-none 
                                  data-[state=closed]:animate-none"
                     >
@@ -118,12 +122,12 @@ export default function PracticeUI() {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.9 }}
                         transition={{ duration: 0.25, ease: 'easeOut' }}
-                        className="p-6 max-h-[80vh] overflow-y-auto"
+                        className="p-4 sm:p-6 max-h-[80vh] overflow-y-auto"
                       >
                         <DialogHeader>
-                          <DialogTitle>Answer</DialogTitle>
+                          <DialogTitle className="text-base sm:text-lg">Answer</DialogTitle>
                         </DialogHeader>
-                        <div className="text-sm leading-relaxed whitespace-pre-line break-words prose prose-sm dark:prose-invert max-w-none">
+                        <div className="text-xs sm:text-sm leading-relaxed whitespace-pre-line break-words prose prose-sm dark:prose-invert max-w-none">
                           {q.answer}
                         </div>
                       </motion.div>
@@ -135,8 +139,8 @@ export default function PracticeUI() {
           </div>
 
           {/* Get New Questions Button */}
-          <div className="flex justify-center mt-10">
-            <Button className="flex items-center gap-2">
+          <div className="flex justify-center mt-8 sm:mt-10">
+            <Button className="flex items-center gap-2 text-sm sm:text-base px-3 sm:px-4 py-2">
               <RefreshCcw className="h-4 w-4" />
               Get New Questions
             </Button>
